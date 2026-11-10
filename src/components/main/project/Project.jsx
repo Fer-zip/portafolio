@@ -10,7 +10,7 @@ const Project = ({ project, index = 0, handleModal }) => {
     >
       <div className="ctnImg">
         <img
-          src={project.image}
+          src={project.image || project.images?.[0]}
           alt={`Captura del proyecto ${project.name}`}
           loading="lazy"
         />
@@ -28,19 +28,6 @@ const Project = ({ project, index = 0, handleModal }) => {
             </span>
           ))}
         </div>
-      </div>
-      <div className="ctnBtn">
-        <button
-          type="button"
-          className="btnShowMore"
-          aria-label={`Ver detalles del proyecto ${project.name}`}
-          onClick={(event) => {
-            event.stopPropagation();
-            handleModal(project);
-          }}
-        >
-          Ver detalles <span>→</span>
-        </button>
       </div>
     </article>
   );

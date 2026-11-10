@@ -18,8 +18,8 @@ const IconPython = () => {
           y2="34.658"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#387EB8" />
-          <stop offset="1" stop-color="#366994" />
+          <stop stopColor="#387EB8" />
+          <stop offset="1" stopColor="#366994" />
         </linearGradient>
         <linearGradient
           id="python__b"
@@ -29,8 +29,8 @@ const IconPython = () => {
           y2="45.163"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#FFE052" />
-          <stop offset="1" stop-color="#FFC331" />
+          <stop stopColor="#FFE052" />
+          <stop offset="1" stopColor="#FFC331" />
         </linearGradient>
       </defs>
     </svg>

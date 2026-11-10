@@ -20,15 +20,15 @@
   --glass-border-hover: rgba(32, 226, 215, 0.35);
 
   /* Unified Cyber Cyan & Electric Indigo Aurora Palette */
-  --accent: #20e2d7;
+  --accent: #ef0b2d;
   --accent-light: #5eead4;
   --accent-dark: #0d9488;
-  --accent-glow: rgba(32, 226, 215, 0.3);
+  --accent-glow: rgb(87 15 40);
   --accent-subtle: rgba(32, 226, 215, 0.12);
-  --accent-border: rgba(32, 226, 215, 0.35);
+  --accent-border: rgba(233, 30, 98, 0.477);
 
-  --primary: #6366f1;
-  --primary-light: #818cf8;
+  --primary: #ff9800;
+  --primary-light: #ffeb3b;
   --primary-glow: rgba(99, 102, 241, 0.25);
   --primary-subtle: rgba(99, 102, 241, 0.12);
   --primary-border: rgba(99, 102, 241, 0.28);
@@ -37,10 +37,23 @@
   --secondary-border: rgba(99, 102, 241, 0.2);
 
   /* Gradients */
-  --gradient-aurora: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
-  --gradient-aurora-hover: linear-gradient(135deg, var(--accent-light) 0%, var(--primary-light) 100%);
+  --gradient-aurora: linear-gradient(
+    135deg,
+    var(--accent) 0%,
+    var(--primary) 100%
+  );
+  --gradient-aurora-hover: linear-gradient(
+    135deg,
+    var(--accent-light) 0%,
+    var(--primary-light) 100%
+  );
   --gradient-accent: linear-gradient(135deg, var(--accent) 0%, #0d9488 100%);
-  --gradient-text: linear-gradient(135deg, #ffffff 20%, var(--accent) 65%, var(--primary-light) 100%);
+  --gradient-text: linear-gradient(
+    135deg,
+    #ffffff 20%,
+    var(--accent) 65%,
+    var(--primary-light) 100%
+  );
 
   /* Layout & Animation Timing */
   --header-height: 76px;
@@ -116,18 +129,19 @@ button {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--accent) 0%, var(--primary) 100%);
+  /* background: linear-gradient(180deg, var(--accent) 0%, var(--primary) 100%); */
+  background: var(--accent);
   border: 2px solid var(--background);
   border-radius: 10px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+/* ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(
     180deg,
     var(--accent-light) 0%,
     var(--primary-light) 100%
   );
-}
+} */
 
 /* Accessible focus ring for keyboard users */
 :focus-visible {

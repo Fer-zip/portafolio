@@ -1,7 +1,6 @@
 import "./hero.css";
 import IconGithub from "../../../assets/IconGithub.jsx";
 import IconLinkedin from "../../../assets/IconLinkedin.jsx";
-import IconDocument from "../../../assets/IconDocument.jsx";
 import IconReact from "../../../assets/IconReact.jsx";
 import IconJS from "../../../assets/IconJS.jsx";
 import IconPython from "../../../assets/IconPython.jsx";
@@ -28,8 +27,19 @@ const Hero = () => {
             className="btnDownload"
             title="Descargar Currículum Vitae"
           >
-            <IconDocument />
             <span>Descargar CV</span>
+            <svg
+              className="btnDownloadIcon"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                fillRule="evenodd"
+                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
+                clipRule="evenodd"
+              />
+            </svg>
           </a>
           <a
             href="https://github.com/Fer-zip"

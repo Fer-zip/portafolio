@@ -5,27 +5,72 @@ import IconWhatsApp from "../../../assets/IconWhatsApp.jsx";
 import IconLinkedin from "../../../assets/IconLinkedin.jsx";
 import IconGithub from "../../../assets/IconGithub.jsx";
 
+// Si existe VITE_FORMSPREE_ID en .env usa Formspree; de lo contrario envía directamente a tu Gmail mediante FormSubmit
+const CONTACT_ENDPOINT = import.meta.env.VITE_FORMSPREE_ID
+  ? `https://formspree.io/f/${import.meta.env.VITE_FORMSPREE_ID}`
+  : "https://formsubmit.co/ajax/jeanpierefernandez80@gmail.com";
+
 const Contact = () => {
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState("idle"); // 'idle' | 'success' | 'error'
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.name && formData.email && formData.message) {
-      setIsSubmitted(true);
-      setFormData({ name: "", email: "", message: "" });
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 5000);
+    if (!formData.name || !formData.email || !formData.message) return;
+
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+    setErrorMessage("");
+
+    try {
+      const response = await fetch(CONTACT_ENDPOINT, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          _subject: `Nuevo mensaje de ${formData.name} desde tu Portafolio`,
+        }),
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (response.ok && (data.success === "true" || data.ok || !data.error)) {
+        setSubmitStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => {
+          setSubmitStatus("idle");
+        }, 6000);
+      } else {
+        setSubmitStatus("error");
+        setErrorMessage(
+          data?.message ||
+            data?.errors?.map((err) => err.message).join(", ") ||
+            "Hubo un inconveniente al enviar el mensaje. Por favor intenta de nuevo.",
+        );
+      }
+    } catch {
+      setSubmitStatus("error");
+      setErrorMessage(
+        "No se pudo conectar con el servidor de correo. Puedes contactarme directamente a jeanpierefernandez80@gmail.com.",
+      );
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -49,7 +94,7 @@ const Contact = () => {
               <div className="contactCardText">
                 <h4>Correo Electrónico</h4>
                 <a href="mailto:jeanpierefernandez80@gmail.com">
-                  jeanpierefernandez80@gmail.com
+                  jeanpierefernandez80
                 </a>
               </div>
             </div>
@@ -65,7 +110,7 @@ const Contact = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  +51 979740819
+                  +51 979740xxx
                 </a>
               </div>
             </div>
@@ -141,14 +186,32 @@ const Contact = () => {
                   required
                 ></textarea>
               </div>
-              <button type="submit" className="btnSubmit">
-                Enviar mensaje
+              <button
+                type="submit"
+                className="btnSubmit"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Enviando..." : "Enviar mensaje"}
               </button>
 
-              {isSubmitted && (
-                <div className="submitSuccessMessage" role="status" aria-live="polite">
+              {submitStatus === "success" && (
+                <div
+                  className="submitSuccessMessage"
+                  role="status"
+                  aria-live="polite"
+                >
                   ✓ ¡Gracias por tu mensaje! Me pondré en contacto contigo a la
                   brevedad.
+                </div>
+              )}
+
+              {submitStatus === "error" && (
+                <div
+                  className="submitErrorMessage"
+                  role="alert"
+                  aria-live="assertive"
+                >
+                  ✕ {errorMessage}
                 </div>
               )}
             </form>

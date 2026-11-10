@@ -8,7 +8,7 @@
   width: 80%;
   margin: auto;
   position: relative;
-  padding: 40px 0;
+  /* padding: 40px 0; */
 }
 
 .heroContent {
@@ -26,21 +26,29 @@
   gap: 10px;
   width: fit-content;
   padding: 8px 18px;
-  background: linear-gradient(135deg, rgba(32, 226, 215, 0.08) 0%, rgba(99, 102, 241, 0.08) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(32, 226, 215, 0.08) 0%,
+    rgba(99, 102, 241, 0.08) 100%
+  );
   border: 1px solid var(--accent-border);
   border-radius: 30px;
   font-size: 13px;
   font-weight: 500;
   color: var(--accent);
   backdrop-filter: blur(12px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25), 0 0 15px var(--accent-glow);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.25),
+    0 0 15px var(--accent-glow);
   transition: var(--transition-smooth);
 }
 
 .statusBadge:hover {
   transform: translateY(-2px);
   border-color: var(--accent);
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.35), 0 0 22px var(--accent-glow);
+  box-shadow:
+    0 6px 25px rgba(0, 0, 0, 0.35),
+    0 0 22px var(--accent-glow);
 }
 
 .statusDot {
@@ -109,56 +117,94 @@
 }
 
 .heroButtons .btnDownload {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 13px 30px;
+  padding: 12px 28px;
   background: var(--gradient-aurora);
-  color: #070913;
+  border-radius: 9999px;
+  color: #fff;
   font-weight: 700;
   font-size: 15px;
-  border-radius: 30px;
-  box-shadow: 0 4px 20px var(--accent-glow);
-  transition: var(--transition-smooth);
-  cursor: pointer;
-  position: relative;
+  letter-spacing: 0.3px;
+  outline: 3px solid rgba(255, 255, 255, 0.35);
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.35),
+    0 0 20px var(--accent-glow);
+  /* outline: none; */
   overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.heroButtons .btnDownload span {
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease-in-out;
+}
+
+.heroButtons .btnDownload .btnDownloadIcon {
+  position: relative;
+  z-index: 2;
+  width: 22px;
+  height: 22px;
+  fill: #fff;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .heroButtons .btnDownload::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: var(--gradient-aurora-hover);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.heroButtons .btnDownload span,
-.heroButtons .btnDownload svg {
-  position: relative;
+  width: 100px;
+  height: 100%;
+  background-image: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 25%,
+    rgba(255, 255, 255, 0.85) 50%,
+    rgba(255, 255, 255, 0) 75%
+  );
+  top: 0;
+  left: -120px;
+  opacity: 0.7;
   z-index: 1;
-}
-
-.heroButtons .btnDownload svg {
-  width: 20px;
-  height: 20px;
-  fill: #070913;
-  transition: transform 0.25s ease;
+  pointer-events: none;
 }
 
 .heroButtons .btnDownload:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 8px 30px var(--accent-glow), 0 0 20px var(--primary-glow);
+  transform: translateY(-2px) scale(1.05);
+  outline-color: rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 14px 35px rgba(0, 0, 0, 0.45),
+    0 0 30px var(--accent-glow),
+    0 0 15px var(--primary-glow);
+}
+
+.heroButtons .btnDownload:hover .btnDownloadIcon {
+  transform: translateX(5px);
 }
 
 .heroButtons .btnDownload:hover::before {
-  opacity: 1;
+  animation: shine 1.5s ease-out infinite;
 }
 
-.heroButtons .btnDownload:hover svg {
-  transform: translateY(2px);
+.heroButtons .btnDownload:active {
+  transform: scale(0.97);
+  box-shadow: 0 4px 15px var(--accent-glow);
+}
+
+@keyframes shine {
+  0% {
+    left: -120px;
+  }
+  60% {
+    left: 120%;
+  }
+  100% {
+    left: 120%;
+  }
 }
 
 .heroButtons .btnSocial {
@@ -185,7 +231,6 @@
   transform: translateY(-3px) scale(1.06);
   border-color: var(--accent);
   color: var(--accent);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 16px var(--accent-glow);
   background-color: var(--accent-subtle);
 }
 
@@ -313,7 +358,9 @@
 
 .techBadge:hover {
   border-color: var(--accent);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45), 0 0 18px var(--accent-glow);
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.45),
+    0 0 18px var(--accent-glow);
 }
 
 .techBadge-react {

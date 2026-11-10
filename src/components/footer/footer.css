@@ -54,7 +54,9 @@
   text-decoration: none;
   color: var(--text-secondary);
   font-size: 14px;
-  transition: color 0.25s ease, transform 0.25s ease;
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
   display: inline-block;
 }
 
@@ -72,25 +74,26 @@
 
 .social-links a {
   text-decoration: none;
-  color: #070913;
-  background: var(--gradient-aurora);
+  color: var(--text);
   padding: 8px 18px;
   border-radius: 20px;
   font-size: 13px;
   font-weight: 700;
-  box-shadow: 0 4px 15px var(--accent-glow);
+  outline: solid 1px var(--accent-border);
   transition: var(--transition-smooth);
 }
 
 .social-links a:hover {
   transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 25px var(--accent-glow), 0 0 15px var(--primary-glow);
+  box-shadow:
+    0 8px 25px var(--accent-glow),
+    0 0 15px var(--primary-glow);
 }
 
 .footer-bottom {
   text-align: center;
   padding-top: 2rem;
-  border-top: 1px solid var(--glass-border);
+  /* border-top: 1px solid var(--glass-border); */
   font-size: 13px;
   color: var(--text-muted);
 }
