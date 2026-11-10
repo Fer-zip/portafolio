@@ -1,0 +1,205 @@
+/* CONTACT SECTION */
+.contactSection {
+  padding: 80px 0;
+  width: 70%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.contactWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  width: 100%;
+}
+
+.contactContent {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+/* Contact Info Cards */
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.contactInfoCard {
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 18px 22px;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: var(--transition-smooth);
+}
+
+.contactInfoCard:hover {
+  border-color: var(--accent-border);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35), 0 0 18px var(--accent-glow);
+  transform: translateX(5px);
+}
+
+.contactIconWrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background-color: var(--accent-subtle);
+  border: 1px solid var(--accent-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: var(--transition-smooth);
+}
+
+.contactInfoCard:hover .contactIconWrapper {
+  transform: scale(1.08);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.contactIconWrapper svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--accent);
+  color: var(--accent);
+}
+
+.contactCardText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.contactCardText h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.contactCardText a {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text);
+  word-break: break-all;
+  transition: color 0.25s ease;
+}
+
+.contactCardText a:hover {
+  color: var(--accent);
+}
+
+/* Contact Form Container */
+.contactContainer {
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 35px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formGroup label {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--primary-light);
+}
+
+.formGroup input,
+.formGroup textarea {
+  padding: 12px 16px;
+  border-radius: 10px;
+  background-color: var(--surface);
+  border: 1px solid var(--glass-border);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  border-color: var(--accent);
+  background-color: var(--accent-subtle);
+  box-shadow: 0 0 16px var(--accent-glow);
+}
+
+.formGroup textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.btnSubmit {
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 13px 28px;
+  margin-top: 0.5rem;
+  border-radius: 12px;
+  background: var(--gradient-aurora);
+  color: #070913;
+  box-shadow: 0 4px 18px var(--accent-glow);
+  transition: var(--transition-smooth);
+}
+
+.btnSubmit:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 8px 28px var(--accent-glow), 0 0 20px var(--primary-glow);
+  filter: brightness(1.05);
+}
+
+.submitSuccessMessage {
+  padding: 12px 18px;
+  background-color: var(--accent-subtle);
+  border: 1px solid var(--accent-border);
+  border-radius: 10px;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  box-shadow: 0 0 15px var(--accent-glow);
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .contactContent {
+    grid-template-columns: 1fr;
+  }
+}

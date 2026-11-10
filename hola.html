@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Propuesta Técnica y Económica - Asistente IA Personal Multidispositivo
+    </title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap");
+
+      :root {
+        --primary: #0f172a;
+        --primary-light: #1e293b;
+        --accent: #2563eb;
+        --accent-soft: #eff6ff;
+        --warning-bg: #fffbeb;
+        --warning-border: #fde68a;
+        --warning-text: #92400e;
+        --success: #059669;
+        --danger: #dc2626;
+        --gray-50: #f8fafc;
+        --gray-100: #f1f5f9;
+        --gray-200: #e2e8f0;
+        --gray-600: #475569;
+        --gray-700: #334155;
+        --gray-900: #0f172a;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #cbd5e1;
+        color: var(--gray-700);
+        line-height: 1.55;
+        font-size: 13px;
+        padding: 24px;
+      }
+
+      .paper {
+        background: white;
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 44px 52px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+
+      .btn-print {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--accent);
+        color: white;
+        border: none;
+        padding: 10px 18px;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+      }
+
+      .btn-print:hover {
+        background: #1d4ed8;
+      }
+
+      header {
+        border-bottom: 2px solid var(--gray-200);
+        padding-bottom: 20px;
+        margin-bottom: 22px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .doc-meta {
+        font-size: 11.5px;
+        color: var(--gray-600);
+        text-align: right;
+      }
+
+      .doc-meta strong {
+        color: var(--gray-900);
+      }
+
+      h1 {
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--primary);
+        letter-spacing: -0.02em;
+        margin-bottom: 4px;
+      }
+
+      .subtitle {
+        font-size: 13.5px;
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      h2 {
+        font-size: 14.5px;
+        font-weight: 700;
+        color: var(--primary);
+        border-left: 4px solid var(--accent);
+        padding-left: 10px;
+        margin: 22px 0 10px 0;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+      }
+
+      p {
+        margin-bottom: 8px;
+      }
+
+      .callout-warning {
+        background: var(--warning-bg);
+        border-left: 4px solid var(--warning-border);
+        color: var(--warning-text);
+        padding: 12px 14px;
+        border-radius: 0 6px 6px 0;
+        margin: 12px 0;
+        font-size: 12.5px;
+      }
+
+      .callout-warning strong {
+        color: #78350f;
+      }
+
+      .callout-info {
+        background: var(--accent-soft);
+        border-left: 4px solid var(--accent);
+        color: #1e40af;
+        padding: 12px 14px;
+        border-radius: 0 6px 6px 0;
+        margin: 12px 0;
+        font-size: 12.5px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0 16px 0;
+        font-size: 12px;
+      }
+
+      th,
+      td {
+        border: 1px solid var(--gray-200);
+        padding: 8px 11px;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        background: var(--gray-50);
+        color: var(--gray-900);
+        font-weight: 600;
+      }
+
+      tr:nth-child(even) td {
+        background: #fafbfc;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 10px;
+        font-weight: 600;
+      }
+
+      .badge-success {
+        background: #dcfce7;
+        color: #166534;
+      }
+      .badge-danger {
+        background: #fee2e2;
+        color: #991b1b;
+      }
+      .badge-warning {
+        background: #fef3c7;
+        color: #92400e;
+      }
+      .badge-neutral {
+        background: #f1f5f9;
+        color: #475569;
+      }
+
+      ul {
+        margin-left: 18px;
+        margin-bottom: 10px;
+      }
+
+      li {
+        margin-bottom: 4px;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin: 12px 0;
+      }
+
+      .card {
+        border: 1px solid var(--gray-200);
+        border-radius: 6px;
+        padding: 12px 14px;
+        background: white;
+      }
+
+      .card-title {
+        font-weight: 700;
+        font-size: 13px;
+        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .total-box {
+        background: var(--primary);
+        color: white;
+        padding: 14px 18px;
+        border-radius: 6px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+      }
+
+      .total-box span {
+        font-size: 12.5px;
+        font-weight: 500;
+      }
+      .total-box strong {
+        font-size: 19px;
+        font-weight: 800;
+        color: #60a5fa;
+      }
+
+      @media print {
+        body {
+          background: white;
+          padding: 0;
+          font-size: 11px;
+          color: #000;
+        }
+        .paper {
+          box-shadow: none;
+          padding: 0;
+          max-width: 100%;
+          border-radius: 0;
+        }
+        .no-print {
+          display: none !important;
+        }
+        h2 {
+          page-break-after: avoid;
+          margin-top: 16px;
+        }
+        table,
+        .card,
+        .callout-warning,
+        .callout-info {
+          page-break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="no-print"
+      style="max-width: 880px; margin: 0 auto; text-align: right"
+    >
+      <button class="btn-print" onclick="window.print()">
+        🖨️ Descargar / Guardar como PDF
+      </button>
+    </div>
+
+    <div class="paper">
+      <header>
+        <div>
+          <h1>PROPUESTA TÉCNICA Y ECONÓMICA</h1>
+          <div class="subtitle">
+            Asistente IA Multidispositivo ("Jarvis Desktop, Móvil & Asesor
+            Conversacional")
+          </div>
+        </div>
+        <div class="doc-meta">
+          <div><strong>Documento:</strong> PROP-2026-JARVIS-PEN</div>
+          <div><strong>Moneda:</strong> Soles Peruanos (PEN)</div>
+          <div><strong>Plataformas:</strong> Windows 10/11 + Android / iOS</div>
+        </div>
+      </header>
+
+      <!-- 1. RESUMEN -->
+      <h2>1. Resumen Ejecutivo del Proyecto</h2>
+      <p>
+        El presente proyecto comprende el diseño, programación e implementación
+        de un
+        <strong
+          >asistente personal de inteligencia artificial
+          multidispositivo</strong
+        >
+        con procesamiento centralizado en la computadora de escritorio (Windows)
+        y enlace bidireccional continuo con el teléfono celular (Android o
+        iPhone).
+      </p>
+      <p>
+        El sistema no solo ejecuta acciones sobre el sistema operativo, sino que
+        integra una
+        <strong
+          >capa conversacional avanzada de criterio y asistencia profesional
+          personalizada</strong
+        >, emulando la dinámica de trabajo de un asistente ejecutivo tipo
+        "Jarvis".
+      </p>
+
+      <!-- 2. DELIMITACIÓN CRÍTICA -->
+      <h2>2. Alcance Operativo: Lanzamiento vs. Edición Interna</h2>
+
+      <div class="callout-warning">
+        <strong
+          >⚠️ Regla Fundamental del Asistente (Lanzamiento vs. Edición
+          Interna):</strong
+        ><br />
+        Tanto en PC como en el móvil, el sistema
+        <strong>SIEMPRE (o casi siempre)</strong> podrá abrir, lanzar, enfocar y
+        cerrar aplicaciones instaladas (AutoCAD, YouTube, Spotify, WhatsApp,
+        navegadores). Sin embargo, <strong>CASI NUNCA</strong> podrá crear,
+        diseñar, modelar ni editar contenido dentro de programas complejos de
+        terceros (por ejemplo: no puede trazar un plano dentro de AutoCAD ni
+        editar un video), debido a que este tipo de software no expone sus
+        herramientas de dibujo internas a modelos de lenguaje natural directo.
+      </div>
+
+      <div class="grid-2">
+        <div class="card" style="border-top: 3px solid var(--success)">
+          <div class="card-title" style="color: var(--success)">
+            ✔ Lo que el sistema SÍ puede hacer
+          </div>
+          <ul style="font-size: 11.5px; margin-bottom: 0">
+            <li>
+              <strong>Lanzamiento en PC:</strong> Abrir programas (AutoCAD,
+              Office, Chrome, Spotify, etc.).
+            </li>
+            <li>
+              <strong>YouTube Automatizado:</strong> Buscar y reproducir videos
+              o música directamente.
+            </li>
+            <li>
+              <strong>WhatsApp Web en PC:</strong> Abrir chats por contacto y
+              enviar mensajes directos con confirmación.
+            </li>
+            <li>
+              <strong>Control de Sistema:</strong> Subir/bajar volumen,
+              suspender, apagar o bloquear pantalla.
+            </li>
+            <li>
+              <strong>Apertura de archivos:</strong> Órdenes contextuales como:
+              <em>"Abre el plano de la casa en AutoCAD"</em> apuntando al
+              archivo <code>.dwg</code>.
+            </li>
+            <li>
+              <strong>Puente Móvil ↔ PC:</strong> Mandar órdenes del celular a
+              la PC para preparar el entorno de trabajo, y viceversa (ej.
+              <em>"Abre Spotify en mi celular"</em> desde la PC).
+            </li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-top: 3px solid var(--danger)">
+          <div class="card-title" style="color: var(--danger)">
+            ✖ Lo que NO puede hacer (Límites Técnicos)
+          </div>
+          <ul style="font-size: 11.5px; margin-bottom: 0">
+            <li>
+              <strong>Edición dentro de software especializado:</strong> No
+              puede modelar figuras ni trazar planos en AutoCAD.
+            </li>
+            <li>
+              <strong>Control táctil invasivo en celular:</strong> Por políticas
+              de seguridad (sandbox de Android/iOS), una app no puede simular
+              toques en apps de terceros cerradas.
+            </li>
+            <li>
+              <strong>WhatsApp sin teléfono vinculado:</strong> Requiere que la
+              sesión de WhatsApp Web permanezca abierta en la PC.
+            </li>
+            <li>
+              <strong>Modificaciones de riesgo sin permiso:</strong> Ninguna
+              orden destructiva se ejecutará sin confirmación expresa del
+              usuario.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3. CAPA CONVERSACIONAL Y ESPECIALIZACIÓN -->
+      <h2>
+        3. Capa Conversacional y Especialización Profesional ("Modo Jarvis")
+      </h2>
+      <p>
+        A diferencia de un simple automatizador de comandos, el asistente cuenta
+        con un motor de lenguaje natural adaptativo:
+      </p>
+      <ul>
+        <li>
+          <strong>Personalidad y Tono Configurable:</strong> Respuesta en estilo
+          formal, proactivo y ejecutivo (*"Enseguida señor, cargando el plano
+          solicitado"*), o con tono cercano y fluido.
+        </li>
+        <li>
+          <strong>Especialización por Carrera o Ámbito Profesional:</strong> El
+          asistente puede configurarse mediante perfiles (ej.
+          <em>Arquitectura, Ingeniería Civil, Derecho, Finanzas, Medicina</em>).
+          En este modo, además de abrir programas, analiza conceptos técnicos,
+          calcula metrados o conversiones, responde dudas normativas y ayuda a
+          estructurar documentos y correos con léxico técnico especializado.
+        </li>
+        <li>
+          <strong>Archivo de Personalización Accesible:</strong> Se deja un
+          archivo de configuración intuitivo para que el usuario pueda cambiar o
+          afinar las instrucciones y el rol de su asistente cuando lo desee sin
+          tocar código de programación.
+        </li>
+      </ul>
+
+      <!-- 4. ARQUITECTURA PC + MÓVIL -->
+      <h2>4. Arquitectura del Puente Bidireccional (PC ↔ Celular)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Dirección del Flujo</th>
+            <th>Mecanismo Técnico</th>
+            <th>Ejemplos de Acción Práctica</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Celular → PC (Móvil a Escritorio)</strong></td>
+            <td>
+              Canal seguro de mensajería asíncrona (Bot privado / Webhooks).
+            </td>
+            <td>
+              Estando fuera de tu escritorio o desde la cama:
+              <em>"Abre AutoCAD con el proyecto pendiente"</em>,
+              <em>"Pon música en los altavoces de la PC"</em> o
+              <em>"Bloquea la computadora"</em>.
+            </td>
+          </tr>
+          <tr>
+            <td><strong>PC → Celular (Escritorio a Móvil)</strong></td>
+            <td>
+              Notificaciones push y enlaces profundos (Deep links / Atajos).
+            </td>
+            <td>
+              Estando trabajando en la PC:
+              <em>"Abre Spotify en mi teléfono"</em>,
+              <em>"Abre este video en mi celular"</em> o recibir avisos
+              importantes de la PC directamente en la pantalla del móvil.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- 5. COSTOS DE API Y RESPONSABILIDAD DEL CLIENTE -->
+      <h2>5. Costos Operativos: Consumo de API del LLM y Servidor</h2>
+
+      <div class="callout-info">
+        <strong>📌 Política de Costos de Infraestructura y APIs:</strong><br />
+        El costo de desarrollo cubre íntegramente la ingeniería, diseño,
+        programación, integración y puesta en marcha del software. Los
+        <strong
+          >costos de consumo mensual de la API del LLM (Google Gemini Flash /
+          OpenAI GPT-4o-mini) corren por cuenta y cargo directo del
+          cliente</strong
+        >, asociando su propia cuenta y tarjeta de crédito/débito en la
+        plataforma del proveedor.
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Concepto Operativo</th>
+            <th>Proveedor / Ubicación</th>
+            <th>Costo Mensual Estimado</th>
+            <th>Responsable del Pago</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <strong>API del Modelo Inteligente (LLM)</strong><br /><small
+                >Procesamiento conversacional y ejecución de acciones</small
+              >
+            </td>
+            <td>Google Gemini 2.0 Flash o OpenAI GPT-4o-mini</td>
+            <td>
+              <strong>Aprox. S/. 10.00 a S/. 25.00 PEN / mes</strong
+              ><br /><small
+                >(Basado en ~80 a 150 consultas y órdenes diarias)</small
+              >
+            </td>
+            <td>
+              <strong>Cliente</strong><br /><small
+                >(Facturado directo por el proveedor)</small
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Alojamiento / Servidor Central</strong><br /><small
+                >Ejecución local en segundo plano</small
+              >
+            </td>
+            <td>Computadora del cliente (Localhost en Windows)</td>
+            <td>
+              <strong>S/. 0.00 PEN / mes</strong><br /><small
+                >(No requiere pagar servidores en la nube)</small
+              >
+            </td>
+            <td><strong>Sin costo recurrente</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- 6. CRONOGRAMA -->
+      <h2>6. Fases de Desarrollo y Plazos de Entrega (3 a 4 Semanas)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Fase</th>
+            <th>Duración</th>
+            <th>Entregables Principales</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Fase 1: Núcleo de Windows y Tools</strong></td>
+            <td>Semana 1</td>
+            <td>
+              Lanzadores de programas locales (AutoCAD, carpetas, YouTube),
+              control de sistema y volumen.
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Fase 2: WhatsApp Web y Automatización</strong></td>
+            <td>Semana 2</td>
+            <td>
+              Módulo persistente de Playwright para envío directo de mensajes
+              con confirmación humana.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Fase 3: Inteligencia Conversacional y Móvil</strong>
+            </td>
+            <td>Semana 3</td>
+            <td>
+              Orquestador de voz con respuesta instantánea de relleno
+              (*"Enseguida..."*), perfiles de profesión y enlace bidireccional
+              con celular.
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Fase 4: Calibración y Entrega</strong></td>
+            <td>Semana 4</td>
+            <td>
+              Configuración en los equipos del cliente, vinculación de API de
+              IA, pruebas de campo y manual de uso.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- 7. COTIZACIÓN ECONÓMICA FIJA -->
+      <h2>7. Cotización Económica del Servicio de Desarrollo</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Módulo de Desarrollo e Integración</th>
+            <th>Alcance y Detalle Técnico</th>
+            <th style="text-align: right">Inversión Neta (PEN)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Núcleo de Control de Sistema (PC Windows)</strong></td>
+            <td>
+              Lanzadores seguros de aplicaciones, buscador multimedia web y
+              control de hardware local.
+            </td>
+            <td style="text-align: right">S/. 650.00</td>
+          </tr>
+          <tr>
+            <td><strong>Módulo de Mensajería WhatsApp Web</strong></td>
+            <td>
+              Automatización persistente para redacción y envío asistido a
+              contactos sin API de pago de Meta.
+            </td>
+            <td style="text-align: right">S/. 450.00</td>
+          </tr>
+          <tr>
+            <td>
+              <strong
+                >Motor Conversacional Personalizado ("Modo Jarvis")</strong
+              >
+            </td>
+            <td>
+              Pipeline de lenguaje natural, respuestas de baja latencia y
+              sistema de perfiles profesionales editables.
+            </td>
+            <td style="text-align: right">S/. 500.00</td>
+          </tr>
+          <tr>
+            <td>
+              <strong
+                >Módulo de Integración y Puente Celular (Android / iOS)</strong
+              >
+            </td>
+            <td>
+              Canal de comunicación bidireccional para emitir y recibir comandos
+              remotos PC ↔ Móvil.
+            </td>
+            <td style="text-align: right">S/. 400.00</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Seguridad, Validación Humana y Puesta a Punto</strong>
+            </td>
+            <td>
+              Compuertas de confirmación previa, configuración en equipos del
+              cliente y manual básico.
+            </td>
+            <td style="text-align: right">S/. 250.00</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="total-box">
+        <span>PRECIO FIJO TOTAL POR DESARROLLO INTEGRAL:</span>
+        <strong>S/. 2,250.00 PEN</strong>
+      </div>
+
+      <!-- 8. REQUISITOS -->
+      <h2 style="margin-top: 22px">
+        8. Requisitos Previos por Parte del Cliente
+      </h2>
+      <ul style="font-size: 12px">
+        <li>
+          <strong>Computadora:</strong> Windows 10 u 11 (64-bit), procesador
+          Core i5 / Ryzen 5 o superior, 16 GB RAM recomendados.
+        </li>
+        <li>
+          <strong>Teléfono Celular:</strong> Android 10+ o iPhone con iOS 16+
+          con acceso a internet.
+        </li>
+        <li>
+          <strong>Tarjeta para API de IA:</strong> Disponer de tarjeta de
+          crédito/débito habilitada para compras por internet para vincular en
+          la cuenta del proveedor de IA (consumo aproximado de S/. 10 a S/. 25
+          mensuales según uso).
+        </li>
+        <li>
+          <strong>Periféricos:</strong> Micrófono operativo y altavoces
+          configurados en la computadora.
+        </li>
+      </ul>
+
+      <div
+        style="
+          margin-top: 28px;
+          padding-top: 16px;
+          border-top: 1px dashed var(--gray-200);
+          display: flex;
+          justify-content: space-between;
+          font-size: 11.5px;
+          color: var(--gray-600);
+        "
+      >
+        <div>
+          Documento elaborado para fines de evaluación técnica y comercial.
+        </div>
+        <div>Validez de la propuesta: 30 días calendario.</div>
+      </div>
+    </div>
+  </body>
+</html>

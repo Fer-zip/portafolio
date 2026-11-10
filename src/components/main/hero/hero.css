@@ -1,0 +1,413 @@
+/* HERO SECTION */
+.heroSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 88vh;
+  gap: 3rem;
+  width: 80%;
+  margin: auto;
+  position: relative;
+  padding: 40px 0;
+}
+
+.heroContent {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  z-index: 2;
+}
+
+/* Status Badge */
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  padding: 8px 18px;
+  background: linear-gradient(135deg, rgba(32, 226, 215, 0.08) 0%, rgba(99, 102, 241, 0.08) 100%);
+  border: 1px solid var(--accent-border);
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25), 0 0 15px var(--accent-glow);
+  transition: var(--transition-smooth);
+}
+
+.statusBadge:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.35), 0 0 22px var(--accent-glow);
+}
+
+.statusDot {
+  position: relative;
+  width: 9px;
+  height: 9px;
+  background-color: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.statusDot::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  animation: pulseRing 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.heroContent h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+}
+
+.heroContent h1 span {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 18px var(--accent-glow));
+}
+
+.heroContent h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--primary-light);
+  position: relative;
+}
+
+.heroContent p {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 600px;
+}
+
+.heroButtons {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.heroButtons .btnDownload {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 30px;
+  background: var(--gradient-aurora);
+  color: #070913;
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: 30px;
+  box-shadow: 0 4px 20px var(--accent-glow);
+  transition: var(--transition-smooth);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroButtons .btnDownload::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-aurora-hover);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.heroButtons .btnDownload span,
+.heroButtons .btnDownload svg {
+  position: relative;
+  z-index: 1;
+}
+
+.heroButtons .btnDownload svg {
+  width: 20px;
+  height: 20px;
+  fill: #070913;
+  transition: transform 0.25s ease;
+}
+
+.heroButtons .btnDownload:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 30px var(--accent-glow), 0 0 20px var(--primary-glow);
+}
+
+.heroButtons .btnDownload:hover::before {
+  opacity: 1;
+}
+
+.heroButtons .btnDownload:hover svg {
+  transform: translateY(2px);
+}
+
+.heroButtons .btnSocial {
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+  transition: var(--transition-smooth);
+  color: var(--text-secondary);
+}
+
+.heroButtons .btnSocial svg {
+  width: 22px;
+  height: 22px;
+  transition: transform 0.3s ease;
+}
+
+.heroButtons .btnSocial:hover {
+  transform: translateY(-3px) scale(1.06);
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 16px var(--accent-glow);
+  background-color: var(--accent-subtle);
+}
+
+.heroButtons .btnSocial:hover svg {
+  transform: scale(1.12);
+}
+
+/* Image container with floating & glow */
+.heroImage {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.heroImageGlow {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(32, 226, 215, 0.22) 0%,
+    rgba(99, 102, 241, 0.22) 55%,
+    transparent 75%
+  );
+  filter: blur(40px);
+  z-index: 1;
+  animation: glowPulse 6s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+}
+
+.heroImage img {
+  width: 360px;
+  height: 360px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--accent);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.6),
+    0 0 25px var(--accent-glow);
+  position: relative;
+  z-index: 2;
+  animation: floatHero 5s ease-in-out infinite;
+}
+
+/* Framed portrait with rotating accent ring + floating tech badges */
+.heroImageFrame {
+  position: relative;
+  width: 360px;
+  height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.heroImageRing {
+  position: absolute;
+  inset: -22px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    var(--accent) 80deg,
+    transparent 160deg,
+    var(--primary) 250deg,
+    transparent 320deg
+  );
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 3px),
+    #000 calc(100% - 2px)
+  );
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 3px),
+    #000 calc(100% - 2px)
+  );
+  opacity: 0.85;
+  animation: spinRing 14s linear infinite;
+  z-index: 1;
+}
+
+@keyframes spinRing {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.techBadge {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+  z-index: 4;
+  animation: floatBadge 6s ease-in-out infinite;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.techBadge svg {
+  width: 26px;
+  height: 26px;
+}
+
+.techBadge:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45), 0 0 18px var(--accent-glow);
+}
+
+.techBadge-react {
+  top: 4%;
+  right: 2%;
+  animation-delay: 0s;
+}
+
+.techBadge-js {
+  top: 52%;
+  right: -8%;
+  animation-delay: 1.6s;
+}
+
+.techBadge-express {
+  bottom: 4%;
+  left: -2%;
+  animation-delay: 0.9s;
+}
+
+.techBadge-python {
+  top: 12%;
+  left: -4%;
+  animation-delay: 2.3s;
+}
+
+@keyframes floatBadge {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes floatHero {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .heroSection {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 2rem;
+    min-height: auto;
+    padding-top: 60px;
+  }
+
+  .heroContent {
+    align-items: center;
+  }
+
+  .heroButtons {
+    justify-content: center;
+  }
+
+  .heroImage img {
+    width: 260px;
+    height: 260px;
+  }
+
+  .heroImageFrame {
+    width: 260px;
+    height: 260px;
+  }
+
+  .heroImageRing {
+    inset: -16px;
+  }
+
+  .techBadge {
+    width: 44px;
+    height: 44px;
+  }
+
+  .techBadge svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .heroImageGlow {
+    width: 280px;
+    height: 280px;
+  }
+
+  .heroContent h1 {
+    font-size: 2.6rem;
+  }
+}

@@ -1,0 +1,138 @@
+.ctnProyectCard {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, rgba(14, 19, 38, 0.8) 0%, rgba(10, 14, 28, 0.88) 100%);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  transition:
+    transform 0.4s var(--ease-out),
+    box-shadow 0.4s var(--ease-out),
+    border-color 0.4s ease;
+  height: 100%;
+  cursor: pointer;
+  position: relative;
+}
+
+.ctnProyectCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.6), 0 0 25px var(--accent-glow), inset 0 1px 0 0 rgba(255, 255, 255, 0.16);
+  border-color: var(--accent-border);
+}
+
+.ctnProyectCard .ctnImg {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+}
+
+.ctnProyectCard .ctnImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ctnProyectCard:hover .ctnImg img {
+  transform: scale(1.06);
+}
+
+.cardCompany {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background-color: rgba(7, 9, 19, 0.85);
+  border: 1px solid var(--glass-border);
+  color: var(--accent);
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ctnProyectCard .ctnText {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 22px 22px 14px 22px;
+  flex-grow: 1;
+}
+
+.ctnProyectCard .ctnText h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.ctnProyectCard .ctnText p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cardTechs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.cardTechBadge {
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 3px 10px;
+  background-color: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  border-radius: 6px;
+  color: var(--primary-light);
+}
+
+.ctnProyectCard .ctnBtn {
+  padding: 0 22px 22px 22px;
+  display: flex;
+}
+
+.ctnProyectCard .ctnBtn .btnShowMore {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.03);
+  color: var(--accent);
+  border: 1px solid var(--accent-border);
+  padding: 11px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: var(--transition-smooth);
+}
+
+.ctnProyectCard .ctnBtn .btnShowMore span {
+  transition: transform 0.3s ease;
+}
+
+.ctnProyectCard:hover .ctnBtn .btnShowMore {
+  background: var(--gradient-aurora);
+  color: #070913;
+  border-color: transparent;
+  box-shadow: 0 6px 20px var(--accent-glow);
+}
+
+.ctnProyectCard:hover .ctnBtn .btnShowMore span {
+  transform: translateX(4px);
+}
