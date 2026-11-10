@@ -23,7 +23,7 @@ const Hero = () => {
         </p>
         <div className="heroButtons">
           <a
-            href="/JeanPiereFernandez_cv.pdf"
+            href="./JeanPiereFernandez_cv.pdf"
             download="JeanPiereFernandez_cv.pdf"
             className="btnDownload"
             title="Descargar Currículum Vitae"
